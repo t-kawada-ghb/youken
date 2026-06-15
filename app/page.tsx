@@ -78,7 +78,7 @@ export default function Home() {
             <textarea
               value={overview}
               onChange={(e) => setOverview(e.target.value)}
-              placeholder={`例：\nクリエイターと企業のマッチングプラットフォームを運営しています。担当者の工数削減のため、企業の課題概要を入力すると要件定義書が自動生成されるWebアプリを作りたいです。`}
+              placeholder={`例：\nBtoBサービスのLPを構成 / デザイン`}
               className="w-full h-52 px-4 py-3 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-gray-800 placeholder-gray-400"
               disabled={isLoading}
             />
