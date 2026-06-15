@@ -28,8 +28,17 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "エラーが発生しました");
+        let errorMessage = `サーバーエラーが発生しました (${response.status})`;
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          try {
+            const data = await response.json();
+            errorMessage = data.error || errorMessage;
+          } catch {
+            // ignore parse error
+          }
+        }
+        throw new Error(errorMessage);
       }
 
       const reader = response.body?.getReader();

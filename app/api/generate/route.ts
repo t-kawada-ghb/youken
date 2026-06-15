@@ -37,6 +37,13 @@ const SYSTEM_PROMPT = `あなたは優秀なプロダクトマネージャー兼
 マークダウン形式で、具体的かつ実用的な内容を記載してください。`;
 
 export async function POST(req: NextRequest) {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return NextResponse.json(
+      { error: "APIキーが設定されていません。環境変数 ANTHROPIC_API_KEY を確認してください。" },
+      { status: 500 }
+    );
+  }
+
   try {
     const { overview } = await req.json();
 
